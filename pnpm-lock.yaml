@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      "@vercel/node":
-        specifier: ^2.0.0
-        version: 2.0.0
-      "@vercel/static-build":
-        specifier: ^1.0.0
-        version: 1.0.0
       '@conform-to/react':
         specifier: ^1.2.2
         version: 1.2.2(react@18.3.1)
