@@ -23,3 +23,18 @@ code {
 .bg-yellow-300{
   background-color:#FED806;
 }
+
+@layer utilities {
+  .mrl {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .mb-important {
+    margin-bottom: 280px;
+  }
+
+  .text-s {
+    font-size: 8px;
+  }
+}

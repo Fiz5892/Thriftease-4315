@@ -12,12 +12,13 @@ code {
     monospace;
 }
 
-.text-yellow-300{
-  color:#FED806;
+/* Pastikan tidak ada konflik dengan Tailwind */
+.text-yellow-300 {
+  color: #FED806;
 }
 
-.bg-yellow-300{
-  background-color:#FED806;
+.bg-yellow-300 {
+  background-color: #FED806;
 }
 
 .mb-important {

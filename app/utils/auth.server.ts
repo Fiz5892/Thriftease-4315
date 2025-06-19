@@ -58,14 +58,33 @@ authenticator.use(
 );
 
 // Google Strategy for OAuth
+interface GoogleProfileEmail {
+    value: string;
+    verified?: boolean;
+}
+
+interface GoogleProfile {
+    id: string;
+    displayName: string;
+    emails: GoogleProfileEmail[];
+    photos?: { value: string }[];
+    provider: string;
+    _json?: any;
+}
+
 authenticator.use(
     new GoogleStrategy(
         {
-            clientID: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-            callbackURL: "http://localhost:5173/auth/google/callback",
+            clientID: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            callbackURL: (process.env.REDIRECT_URI as string) || "http://localhost:5173/auth/google/callback",
         },
-        async (accessToken, refreshToken, profile, done) => {
+        async (
+            accessToken: string,
+            refreshToken: string,
+            profile: GoogleProfile,
+            done: (error: Error | null, user?: any) => void
+        ) => {
             const user = await prisma.user.findUnique({
                 where: { email: profile.emails[0].value },
             });
