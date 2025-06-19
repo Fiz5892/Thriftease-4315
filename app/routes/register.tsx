@@ -284,6 +284,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             {/*email*/}
@@ -296,6 +297,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -310,6 +312,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
+                required
               />
             </div>
             {/*nama lengkap*/}
@@ -322,6 +325,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -339,6 +343,7 @@ const SignupPage = () => {
                   setProvince(e.target.value);
                   fetchCities(e.target.value);
                 }}
+                required
               >
                 <option value="">Pilih Provinsi</option>
                 {provinces.map((province) => (
@@ -361,6 +366,7 @@ const SignupPage = () => {
                   fetchSubdistricts(e.target.value);
                 }}
                 disabled={!province}
+                required
               >
                 <option value="">Pilih Kota</option>
                 {cities.map((city) => (
@@ -382,6 +388,7 @@ const SignupPage = () => {
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
                 disabled={!city}
+                required
               >
                 <option value="">Pilih Kecamatan</option>
                 {subdistricts.map((subdistrict) => (
@@ -401,6 +408,7 @@ const SignupPage = () => {
                 value={postalCode}
                 onChange={handlePostalCodeChange}
                 maxLength={5}
+                required
               />
             </div>
           </div>
@@ -416,6 +424,7 @@ const SignupPage = () => {
               placeholder="Nama Jalan, No. Rumah, RT., RW., dll"
               value={address}
               onChange={handleAddressChange}
+              required
             ></textarea>
             {addressError && <p className="text-red-500 text-sm">{addressError}</p>}
           </div>
@@ -431,6 +440,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <i
                 className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"} absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400 mt-4`}
@@ -455,6 +465,7 @@ const SignupPage = () => {
                 className="w-full border border-gray-400 rounded p-3"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required
               />
               <i
                 className={`fas ${showConfirmPassword ? "fa-eye-slash" : "fa-eye"} absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400 mt-4`}
