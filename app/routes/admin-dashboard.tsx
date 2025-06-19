@@ -5,7 +5,8 @@ import {
   useSearchParams,
   useNavigation,
 } from "@remix-run/react";
-import { PrismaClient, PaymentStatus } from "@prisma/client";
+import pkg from "@prisma/client";
+const { PrismaClient, PaymentStatus } = pkg;
 import {
   Chart as ChartJS,
   Title,

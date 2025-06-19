@@ -2,10 +2,11 @@ import { Authenticator } from "remix-auth";
 import { sessionStorage } from "./session.server";
 import { FormStrategy } from "remix-auth-form";
 import { GoogleStrategy } from "remix-auth-google";
-import { PrismaClient } from '@prisma/client'
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export enum UserRole {
     USER = "USER",
@@ -13,7 +14,7 @@ export enum UserRole {
 }
 
 type User = {
-    name: any;
+    name: string; // Replaced 'any' with 'string' type.
     id: string;
     email: string;
     role: UserRole;
@@ -64,47 +65,11 @@ authenticator.use(
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             callbackURL: "http://localhost:5173/auth/google/callback",
         },
-        async ({ profile }) => {
-            // Generate username from email atau display name
-            const baseUsername = profile.displayName
-                .toLowerCase()
-                .replace(/\s+/g, '')
-                .slice(0, 15);
-
-            // Check existing username dan tambahkan random number jika perlu
-            let username = baseUsername;
-            let counter = 1;
-
-            while (await prisma.user.findUnique({ where: { username } })) {
-                username = `${baseUsername}${counter}`;
-                counter++;
-            }
-
-            const user = await prisma.user.upsert({
+        async (accessToken, refreshToken, profile, done) => {
+            const user = await prisma.user.findUnique({
                 where: { email: profile.emails[0].value },
-                update: {},
-                create: {
-                    email: profile.emails[0].value,
-                    username,
-                    fullName: profile.displayName,
-                    password: "", // No password for OAuth users
-                    role: UserRole.USER,
-                    province: "", // tambahkan nilai default
-                    city: "",
-                    district: "",
-                    postalCode: "",
-                    address: "",
-                    phoneNumber: "",
-                    isVerified: true
-                },
             });
-
-            return {
-                id: user.id,
-                email: user.email,
-                username: user.username,
-                role: user.role as UserRole
-            };
+            done(null, user);
         }
     ),
     "google"

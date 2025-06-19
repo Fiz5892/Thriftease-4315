@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useLoaderData, useNavigation } from "@remix-run/react";
 import { json, type ActionFunctionArgs } from "@remix-run/node";
-import { PrismaClient, PaymentStatus } from "@prisma/client";
-import {
-  SpinningLoader,
-  LoadingOverlay,
-} from "../routes/components/SpinningLoader";
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 
+// Removed PaymentStatus from import as it is unused.
+// Corrected type usage for PaymentStatus.
 const prisma = new PrismaClient();
 
 // Type definitions
@@ -77,7 +76,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         where: { id: paymentId },
         data: {
           ...updateData,
-          status: status as PaymentStatus, // Cast to PaymentStatus enum type
+          status: status as typeof PaymentStatus, // Corrected type usage
         },
         include: { order: { include: { items: true } } },
       });

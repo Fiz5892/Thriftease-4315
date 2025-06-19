@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLoaderData, useNavigation } from "@remix-run/react";
 import { json, ActionFunctionArgs } from "@remix-run/node";
-import { PrismaClient } from "@prisma/client";
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import {
   SpinningLoader,
   LoadingOverlay,

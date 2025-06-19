@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client"
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import { calculateCosineSimilarity } from "~/utils/math.server";
 
 const prisma = new PrismaClient();
@@ -30,6 +31,18 @@ export async function getRecommendedProducts(userId: string) {
   return recommendations;
 }
 
+interface Search {
+  id: string;
+  query: string;
+  createdAt: Date;
+}
+
+interface Order {
+  id: string;
+  items: any[];
+  createdAt: Date;
+}
+
 async function calculateSearchScores(searches: Search[]) {
   // Implement TF-IDF for search terms
   // Calculate relevance scores for products based on search history
@@ -40,4 +53,8 @@ async function calculatePurchaseScores(orders: Order[]) {
   // Calculate product similarity based on purchase patterns
   // Use collaborative filtering techniques
   // Return scored products
+}
+
+function combineScores(searchScores: any, purchaseScores: any) {
+  // Implementation here.
 }

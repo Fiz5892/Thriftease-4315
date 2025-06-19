@@ -2,7 +2,8 @@ import { json, LoaderFunction, redirect, ActionFunction } from "@remix-run/node"
 import { useEffect, useState } from "react";
 import { useNavigate, useLoaderData, Form, useNavigation, useActionData } from "@remix-run/react";
 import { authenticator } from "../utils/auth.server";
-import { PrismaClient } from "@prisma/client";
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {

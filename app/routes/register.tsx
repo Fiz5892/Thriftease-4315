@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
 import { Form, json, redirect, useActionData, useNavigate } from '@remix-run/react';
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { authenticator } from '~/utils/auth.server';
 import bcrypt from 'bcryptjs';
 import { sendOTP } from '~/utils/jwt.server';
 
+const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
 // Loader untuk redirect jika user sudah login

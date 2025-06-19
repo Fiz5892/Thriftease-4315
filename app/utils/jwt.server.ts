@@ -1,7 +1,8 @@
 import transporter from './mailer'; // Import mail transporter (mailer setup)
 import crypto from 'crypto'; // Generate OTP and secure tokens
 import jwt from 'jsonwebtoken'; // Manage JWT tokens
-import { PrismaClient } from '@prisma/client'; // Prisma ORM for database operations
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 
 // Inisialisasi Prisma Client
 const prisma = new PrismaClient();
