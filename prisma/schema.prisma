@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  username            String    @unique
+  email               String    @unique
+  fullName            String
+  province            String
+  city                String
+  district            String
+  postalCode          String
+  address             String
+  password            String?
+  phoneNumber         String
+  isVerified          Boolean   @default(false)
+  role                Role      @default(USER)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  orders              Order[]
+  searches            Search[]
+  searchScores        SearchScore[]  // Menambahkan relasi ke SearchScore
+  cart                Cart?
+  resetToken          String? // Token reset password (opsional)
+  resetTokenExpiresAt DateTime? // Waktu kedaluwarsa token reset (opsional)
+}
+
+
+model Product {
+  id          String         @id @default(cuid())
+  name        String
+  description String         @db.Text
+  size        String
+  price       Float
+  stock       Int
+  category    String
+  isVisible   Boolean        @default(true) // Field baru
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  images      ProductImage[] 
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+}
+
+
+// Model baru untuk menangani multiple images
+model ProductImage {
+  id        String   @id @default(cuid())
+  url       String
+  publicId  String?  // Public ID dari Cloudinary untuk delete
+  order     Int?     // Order/urutan gambar
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("product_images")
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  items     CartItem[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+
+model Search {
+  id        String   @id @default(cuid())
+  userId    String
+  query     String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SearchScore {
+  id        String          @id @default(cuid())
+  userId    String
+  category  String
+  score     Float
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  status      OrderStatus @default(PENDING)
+  totalAmount Float
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  user        User        @relation(fields: [userId], references: [id])
+  items       OrderItem[]
+  payment     Payment?    @relation // Hanya mendeklarasikan nama relasi
+}
+
+
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+  COMPLETED
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Payment {
+  id          String     @id @default(cuid())
+  orderId     String     @unique // Field wajib dengan @unique
+  method      String
+  status      PaymentStatus @default(PENDING)
+  amount      Float
+  paymentDate DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  order       Order       @relation(fields: [orderId], references: [id]) // Definisi lengkap di sisi ini
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
