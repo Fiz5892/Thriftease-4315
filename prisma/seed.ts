@@ -10,7 +10,7 @@ async function main() {
 
   // Map over products and create images
   const productImages = products.map((product, index) => ({
-    url: `/public/foto/product-${index + 1}.jpg`, // Example image URLs
+    url: `/foto/product-${index + 1}.jpg`, // Example image URLs
     productId: product.id, // Use the product's ID
   }));
 

@@ -4,7 +4,6 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { authenticator } from "../utils/auth.server";
 import { createUserSession} from "../utils/session.server";
-import image from "/public/foto/pngwing.com(6).png";
 
 // Loader Function
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -257,7 +256,7 @@ const LoginPage = () => {
             disabled={isSubmitting}
             className="w-full bg-white text-black font-bold py-2 rounded-lg mb-6 shadow-lg flex items-center justify-center space-x-2 hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            <img src={image} alt="Google Logo" className="w-5 h-5" />
+            <img src={"/foto/pngwing.com(6).png"} alt="Google Logo" className="w-5 h-5" />
             <span>Login dengan Google</span>
           </button>
         </Form>

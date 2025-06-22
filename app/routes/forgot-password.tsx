@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import image from "/public/foto/img2.png";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -30,7 +29,7 @@ export default function ForgotPassword() {
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-white p-6 text-center">
       <h1 className="text-2xl font-bold mb-4">Pemulihan Akun</h1>
-      <img src={image} alt="Illustration" className="mx-auto mb-4" />
+      <img src={"/foto/img2.png"} alt="Illustration" className="mx-auto mb-4" />
       <form onSubmit={handleSubmit}>
         <input
           type="email"

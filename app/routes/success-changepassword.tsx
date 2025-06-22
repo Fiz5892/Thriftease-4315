@@ -1,4 +1,3 @@
-import image from "/public/foto/check_15526401%201.png";
 import { useNavigate } from "@remix-run/react";
 
 const SuccessGantiPasswordPage = () => {
@@ -12,7 +11,7 @@ const SuccessGantiPasswordPage = () => {
                     sandi ini untuk masuk ke akun Anda.
                 </p>
                 <div className="flex justify-center mb-6">
-                    <img src={image} alt="Illustration" className="mx-auto mb-4" />
+                    <img src={"/foto/check_15526401%201.png"} alt="Illustration" className="mx-auto mb-4" />
                 </div>
                 <button
                 className="w-full bg-yellow-300 text-black py-2 px-4 rounded shadow-md hover:shadow-lg font-bold"

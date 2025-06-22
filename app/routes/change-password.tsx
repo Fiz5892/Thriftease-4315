@@ -1,5 +1,4 @@
 import { useState } from "react";
-import image from "/public/foto/rb_8863%201.png";
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { PrismaClient } from "@prisma/client";
@@ -144,7 +143,7 @@ const ChangePasswordPage = () => {
       
       <div className="flex items-center justify-center mt-16 bg-white">
         <div className="w-full max-w-xs mx-auto">
-          <img src={image} alt="Illustration" className="mx-auto mb-4" />
+          <img src={"/foto/rb_8863%201.png"} alt="Illustration" className="mx-auto mb-4" />
           
           {isGoogleUser ? (
             // Tampilan untuk Google user
