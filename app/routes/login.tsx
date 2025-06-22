@@ -4,7 +4,7 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { authenticator } from "../utils/auth.server";
 import { createUserSession} from "../utils/session.server";
-import image from "../foto/pngwing.com(6).png";
+import image from "/public/foto/pngwing.com(6).png";
 
 // Loader Function
 export async function loader({ request }: LoaderFunctionArgs) {

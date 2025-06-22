@@ -49,7 +49,7 @@ function main() {
                 case 1:
                     products = _a.sent();
                     productImages = products.map(function (product, index) { return ({
-                        url: "app/foto/product-".concat(index + 1, ".jpg"), // Example image URLs
+                        url: "/public/foto/product-".concat(index + 1, ".jpg"), // Example image URLs
                         productId: product.id, // Use the product's ID
                     }); });
                     // Insert product images into the database

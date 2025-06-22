@@ -1,5 +1,5 @@
 import { useState } from "react";
-import image from "../foto/rb_8863%201.png";
+import image from "/public/foto/rb_8863%201.png";
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 import { PrismaClient } from "@prisma/client";

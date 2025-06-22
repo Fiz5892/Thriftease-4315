@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import image from "../foto/img2.png";
+import image from "/public/foto/img2.png";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');

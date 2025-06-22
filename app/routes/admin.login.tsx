@@ -49,7 +49,7 @@ export default function AdminLogin() {
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col items-center w-full max-w-md p-4">
         <div className="mb-8">
-          <img src="/app/foto/ri_admin-fill.png" alt="Logo Admin" />
+          <img src="/public/foto/ri_admin-fill.png" alt="Logo Admin" />
         </div>
         <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
 
