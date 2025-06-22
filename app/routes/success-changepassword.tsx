@@ -1,4 +1,4 @@
-import image from "../foto/check_15526401 1.png";
+import image from "../foto/check_15526401%201.png";
 import { useNavigate } from "@remix-run/react";
 
 const SuccessGantiPasswordPage = () => {
