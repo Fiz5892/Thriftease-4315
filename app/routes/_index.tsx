@@ -158,7 +158,7 @@ export default function Index() {
         <div className="pt-20 bg-gray-100 p-4 flex justify-center">
           <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between w-full md:w-1/2 transform transition-all duration-300 ">
             <img
-              src="/app/foto/Group 211.png"
+              src="../foto/Group 211.png"
               alt="Man in checkered shirt"
               className="rounded-full w-16 h-16 transition-opacity duration-300"
             />
@@ -166,7 +166,7 @@ export default function Index() {
               Jelajahi Gaya Thrift Terbaik
             </h1>
             <img
-              src="/app/foto/Group 210.png"
+              src="../foto/Group 210.png"
               alt="Woman in denim jacket"
               className="rounded-full w-16 h-16 transition-opacity duration-300"
             />
