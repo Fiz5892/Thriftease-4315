@@ -5,10 +5,7 @@ import { logout } from "~/utils/session.server";
 import { AdminSidebar } from "~/routes/components/AdminSidebar";
 import type { User } from "@prisma/client";
 
-// export const loader = async ({ request }: LoaderFunctionArgs) => {
-//   const admin = await requireAdmin(request);
-//   return json({ currentUser: admin });
-// };
+
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   if (request.method.toLowerCase() !== 'post') {

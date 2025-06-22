@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import {
   SpinningLoader,
   LoadingOverlay,
-} from "./components/SpinningLoader";
+} from "../routes/components/SpinningLoader";
 
 const prisma = new PrismaClient();
 

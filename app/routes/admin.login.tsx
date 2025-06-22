@@ -8,7 +8,7 @@ import { useState } from "react";
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request);
   if (user && user.role === "ADMIN") {
-    return redirect("/admin/dashboard");
+    return redirect("/admin-menu");
   }
   return null;
 };

@@ -1,3 +1,7 @@
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
 export async function updateCategoryScore(userId: string, category: string) {
     const searchScore = await prisma.searchScore.findFirst({
       where: { userId, category },

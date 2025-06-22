@@ -1,4 +1,4 @@
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import styles from "./tailwind.css?url";
 import customStyles from "./app.css?url";

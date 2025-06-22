@@ -3,7 +3,8 @@ import { PrismaClient } from "@prisma/client";
 let prisma: PrismaClient;
 
 declare global {
-  let __db: PrismaClient | undefined;
+  // eslint-disable-next-line no-var
+  var __db: PrismaClient | undefined;
 }
 
 if (process.env.NODE_ENV === "production") {

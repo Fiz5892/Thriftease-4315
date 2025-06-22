@@ -13,7 +13,7 @@ export enum UserRole {
 }
 
 type User = {
-    name: any;
+    name: string;
     id: string;
     email: string;
     role: UserRole;
@@ -47,10 +47,9 @@ authenticator.use(
         
         return {
             id: user.id,
+            name: user.fullName ?? user.username ?? user.email, // Ensure 'name' is present
             email: user.email,
-            username: user.username,
-            role: user.role as UserRole,
-            verified: user.isVerified
+            role: user.role as UserRole
         };
     }),
     "form"
@@ -101,8 +100,8 @@ authenticator.use(
 
             return {
                 id: user.id,
+                name: user.fullName ?? user.username ?? user.email, // Ensure 'name' is present
                 email: user.email,
-                username: user.username,
                 role: user.role as UserRole
             };
         }

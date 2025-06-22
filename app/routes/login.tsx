@@ -19,7 +19,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const user = await authenticator.authenticate("form", request, {
       successRedirect: "/",
       failureRedirect: "/login",
-    });
+    }) as { id: string; role: string }; // Add type annotation
 
     if (user.role !== "ADMIN"){
       return json({ error: "Unauthorized" }, { status: 401 });

@@ -21,4 +21,12 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+
+  build: {
+    rollupOptions: {
+      external: ['fs', 'path', 'crypto', 'stream', 'http', 'https', 'url', 'querystring']
+    }
+  }
 });
+
+

@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import {
   SpinningLoader,
   LoadingOverlay,
-} from "./components/SpinningLoader";
+} from "../routes/components/SpinningLoader";
 
 const prisma = new PrismaClient();
 
@@ -148,7 +148,14 @@ const KelolaProdukPage = () => {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const { products } = useLoaderData<LoaderData>();
-  const fetcher = useFetcher();
+  interface DeleteResponse {
+    success?: boolean;
+    message?: string;
+    deletedImages?: number;
+    error?: string;
+    details?: string;
+  }
+  const fetcher = useFetcher<DeleteResponse>();
   
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -198,7 +205,7 @@ const KelolaProdukPage = () => {
       if (fetcher.data.success) {
         alert(
           `Produk "${selectedProduct?.name}" berhasil dihapus!${
-            fetcher.data.deletedImages > 0 
+            fetcher.data.deletedImages && fetcher.data.deletedImages > 0
               ? `\n${fetcher.data.deletedImages} gambar telah dihapus dari server.`
               : ""
           }`
@@ -217,56 +224,7 @@ const KelolaProdukPage = () => {
   }, [fetcher.data, fetcher.state, selectedProduct]);
 
   // Alternative fetch method (backup)
-  const handleDeleteWithFetch = async () => {
-    if (!selectedProduct) return;
-
-    setLoading(`delete-${selectedProduct.id}`, true);
-
-    try {
-      const formData = new FormData();
-      formData.append("id", selectedProduct.id);
-      formData.append("_method", "DELETE");
-
-      const response = await fetch(window.location.pathname, {
-        method: "POST",
-        body: formData,
-        headers: {
-          "Accept": "application/json",
-        },
-      });
-
-      const contentType = response.headers.get("content-type");
-      
-      if (!contentType?.includes("application/json")) {
-        const text = await response.text();
-        console.error("Non-JSON response:", text);
-        throw new Error("Server returned unexpected response format");
-      }
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        alert(
-          `Produk "${selectedProduct.name}" berhasil dihapus!${
-            result.deletedImages > 0 
-              ? `\n${result.deletedImages} gambar telah dihapus dari server.`
-              : ""
-          }`
-        );
-        
-        window.location.reload();
-      } else {
-        alert(`Gagal menghapus produk: ${result.error || "Unknown error"}`);
-      }
-    } catch (error) {
-      console.error("Delete error:", error);
-      alert(`Error: ${error instanceof Error ? error.message : "Terjadi kesalahan saat menghapus produk"}`);
-    } finally {
-      setLoading(`delete-${selectedProduct.id}`, false);
-      setShowModal(false);
-      setSelectedProduct(null);
-    }
-  };
+  
 
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -371,16 +329,11 @@ const KelolaProdukPage = () => {
             key={product.id}
             className={`bg-white p-4 rounded-md shadow-md flex items-start mb-4 relative ${
               isRecentlyUpdated(product.updatedAt, product.createdAt)
-                ? "border-l-4 border-green-500"
+                ? ""
                 : ""
             }`}
           >
-            {/* Badge untuk produk yang baru diupdate */}
-            {isRecentlyUpdated(product.updatedAt, product.createdAt) && (
-              <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                Baru Diupdate
-              </div>
-            )}
+       
 
             <img
               src={product.images[0]?.url || "https://placehold.co/100x100"}

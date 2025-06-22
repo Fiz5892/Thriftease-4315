@@ -1,2 +1,0 @@
-import transporter from './mailer';
-

@@ -3,7 +3,7 @@ import { useNavigate } from "@remix-run/react";
 import {
   SpinningLoader,
   LoadingOverlay,
-} from "./components/SpinningLoader";
+} from "../routes/components/SpinningLoader";
 
 const TambahProdukPage = () => {
   const navigate = useNavigate();

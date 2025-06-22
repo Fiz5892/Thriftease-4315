@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams, useNavigate, useActionData, useNavigation, Form } from '@remix-run/react';
-import { json, redirect, type ActionFunctionArgs } from '@remix-run/node';
+import { json, type ActionFunctionArgs } from '@remix-run/node';
 import { prisma } from '../utils/prisma.server';
 import bcrypt from 'bcryptjs';
 
@@ -123,13 +123,13 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-xs mx-auto">
         <h1 className="text-2xl font-bold text-center mb-4">Reset Password</h1>
         
-        {actionData?.error && (
+        {actionData && 'error' in actionData && actionData.error && (
           <div className="text-red-500 text-center mb-4 p-3 bg-red-100 rounded">
             {actionData.error}
           </div>
         )}
         
-        {actionData?.success && actionData?.message && (
+        {actionData?.success && 'message' in actionData && actionData.message && (
           <div className="text-green-500 text-center mb-4 p-3 bg-green-100 rounded">
             {actionData.message}
           </div>
@@ -154,12 +154,15 @@ export default function ResetPasswordPage() {
                   minLength={6}
                   disabled={isSubmitting}
                 />
-                <span
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer bg-transparent border-none focus:outline-none"
                   onClick={togglePasswordVisibility}
+                  aria-label={showPassword ? "Sembunyikan password" : "Tampilkan password"}
+                  tabIndex={0}
                 >
                   <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
-                </span>
+                </button>
               </div>
             </div>
             
@@ -177,12 +180,15 @@ export default function ResetPasswordPage() {
                   minLength={6}
                   disabled={isSubmitting}
                 />
-                <span
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer bg-transparent border-none focus:outline-none"
                   onClick={toggleConfirmPasswordVisibility}
+                  aria-label={showConfirmPassword ? "Sembunyikan password" : "Tampilkan password"}
+                  tabIndex={0}
                 >
                   <i className={`fas ${showConfirmPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
-                </span>
+                </button>
               </div>
             </div>
             

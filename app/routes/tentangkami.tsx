@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "@remix-run/react"; // Import useNavigate
 
 function TentangKamiPage() {
   const navigate = useNavigate(); // Initialize useNavigate
