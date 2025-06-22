@@ -196,7 +196,7 @@ export default function Index() {
                   disabled={categoryLoading === category}
                 >
                   <img
-                    src={`//foto/${category}%201.png`}
+                    src={`/foto/${category}%201.png`}
                     alt={`Ikon ${category}`}
                     className="w-12 h-12 sm:w-16 sm:h-16 mb-2 transition-transform duration-200"
                   />
