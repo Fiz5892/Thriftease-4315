@@ -158,7 +158,7 @@ export default function Index() {
         <div className="pt-20 bg-gray-100 p-4 flex justify-center">
           <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between w-full md:w-1/2 transform transition-all duration-300 ">
             <img
-              src="../foto/Group 211.png"
+              src="https://github.com/Fiz5892/Thriftease-4315/blob/7b8308c61ee99b2afc0c22c8097f2033aeeef8ff/app/foto/Group%20211.png"
               alt="Man in checkered shirt"
               className="rounded-full w-16 h-16 transition-opacity duration-300"
             />
