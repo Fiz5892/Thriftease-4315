@@ -1,40 +1,65 @@
-# Welcome to Remix!
+# Thriftease
 
-- 📖 [Remix docs](https://remix.run/docs)
+Thriftease is an open-source project designed to simplify the management and discovery of thrift (high-quality secondhand) items online. With this application, users can easily find, sell, and buy thrift goods efficiently. This application was initially used for project assignment purposes with MSME partners, namely thrift4315.
 
-## Development
+## Main Features
 
-Run the dev server:
+- **Item Search**: Find thrift items by category, price, and location.
+- **Item Management**: Add, edit, and delete thrift item listings for sale.
+- **Transaction History**: Users can view complete transaction history with product details and payment status.
+- **Recommendation System**: Products are recommended based on the user's search and purchase history (using TF-IDF and collaborative filtering).
+- **User Profiles**: Every user has a profile to track activities and transactions.
 
-```shellscript
-npm run dev
-```
+## Installation
 
-## Deployment
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/JasonSlav/thriftease.git
+   ```
+2. Enter the project folder:
+   ```bash
+   cd thriftease
+   ```
+3. Install dependencies (adjust based on programming language and framework used, e.g., Node.js):
+   ```bash
+   npm install
+   ```
+4. Run the application:
+   ```bash
+   npm start
+   ```
 
-First, build your app for production:
+## Configuration
 
-```sh
-npm run build
-```
+- Make sure to set up configuration files such as the database, API keys, and other environment variables in the `.env` file.
 
-Then run the app in production mode:
+## Technologies Used
 
-```sh
-npm start
-```
+- **Main Framework**: Remix Typescript
+- **Frontend**: React
+- **Styling**: Tailwind CSS
+- **ORM**: Prisma
+- **Build tools**: Vite
+- **Linting**: ESLint
 
-Now you'll need to pick a host to deploy it to.
+## Contribution
 
-### DIY
+Contributions are welcome! Please fork this repository and submit a pull request for any features or bug fixes.
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+1. Fork the repository
+2. Create a feature/bugfix branch
+3. Commit your changes
+4. Submit a pull request
 
-Make sure to deploy the output of `npm run build`
+## License
 
-- `build/server`
-- `build/client`
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Styling
+## Contact
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+For questions, suggestions, or collaboration, feel free to contact:
+[JasonSlav](https://github.com/JasonSlav)
+[Fiz5892](https://github.com/Fiz5892)
+---
+
+Happy thrifting with Thriftease!
